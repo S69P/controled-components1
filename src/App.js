@@ -3,7 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  state = { 
+    query:"This should mirror the text you typed into the input field." 
+  }
+
+  updateEcho(echo){
+    this.setState({query:echo})
+  }
+
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -11,9 +21,9 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          <input type="text" placeholder="Say Something" />
+          <input type="text" onChange={(event) => {this.updateEcho(event.target.value)}} placeholder="Say Something" value={this.state.query} />
           <p className="echo">Echo:</p>
-          <p>This should mirror the text you typed into the input field.</p>
+          <p>{this.state.query}</p>
         </div>
       </div>
     );
